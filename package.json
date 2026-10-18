@@ -1,0 +1,28 @@
+{
+  "name": "@hexlet/code",
+  "version": "0.1.0",
+  "description": "Router based on a prefix tree",
+  "main": "index.js",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "lint": "oxlint && oxfmt --check",
+    "lint:fix": "oxfmt && oxlint --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kicha3007-boop/algorithms-project-68.git"
+  },
+  "author": "Kichigin Sergey",
+  "license": "ISC",
+  "devDependencies": {
+    "@vitest/coverage-v8": "^5.0.0",
+    "oxfmt": "^0.63.0",
+    "oxlint": "^1.78.0",
+    "vitest": "^5.0.0"
+  }
+}
