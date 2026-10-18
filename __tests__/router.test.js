@@ -1,4 +1,5 @@
 import { describe, expect, test } from "vitest";
+import { readFileSync } from "node:fs";
 import serve from "../index.js";
 
 describe("static routes", () => {
@@ -116,5 +117,24 @@ describe("constraints", () => {
   test("falls back to the next dynamic segment", () => {
     expect(serve(routes, "/users/42").handler.body).toBe("user by id");
     expect(serve(routes, "/users/john").handler.body).toBe("user by name");
+  });
+});
+
+describe("mixed routes from fixture", () => {
+  const routes = JSON.parse(
+    readFileSync(new URL("../__fixtures__/routes.json", import.meta.url), "utf8"),
+  );
+  const cases = JSON.parse(
+    readFileSync(new URL("../__fixtures__/results.json", import.meta.url), "utf8"),
+  );
+
+  test.each(cases)("request %j gives %j and %s", (request, expected, body) => {
+    const result = serve(routes, request);
+    expect(result).toMatchObject(expected);
+    expect(result.handler.body).toBe(body);
+  });
+
+  test("constraint is searched inside the segment", () => {
+    expect(serve(routes, "api/v2/names/risc-v").params).toEqual({ id: "v2", name: "names" });
   });
 });

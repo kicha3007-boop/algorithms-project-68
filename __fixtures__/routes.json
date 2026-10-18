@@ -1,0 +1,69 @@
+[
+  {
+    "method": "POST",
+    "path": "users/long/:id",
+    "handler": {
+      "body": "handler1"
+    },
+    "constraints": {
+      "id": "\\d+"
+    }
+  },
+  {
+    "path": "users/long/:way",
+    "handler": {
+      "body": "handler2"
+    },
+    "constraints": {
+      "way": "[a-z]"
+    }
+  },
+  {
+    "path": "users/long/way/:name",
+    "handler": {
+      "body": "handler3"
+    },
+    "constraints": {
+      "name": "[a-z]+"
+    }
+  },
+  {
+    "path": "api/:id/:name/risc-v",
+    "handler": {
+      "body": "handler4"
+    },
+    "constraints": {
+      "id": ".",
+      "name": "^[a-z]+$"
+    }
+  },
+  {
+    "method": "PUT",
+    "path": "api/:id/:uid",
+    "handler": {
+      "body": "handler5"
+    }
+  },
+  {
+    "path": "api/to/Japan/",
+    "handler": {
+      "body": "handler6"
+    }
+  },
+  {
+    "path": "/",
+    "handler": {
+      "body": "root"
+    }
+  },
+  {
+    "path": "/courses/:course_id/exercises/:id",
+    "handler": {
+      "body": "exercise!"
+    },
+    "constraints": {
+      "id": "\\d+",
+      "course_id": "^[a-z]+$"
+    }
+  }
+]

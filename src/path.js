@@ -5,10 +5,8 @@ export const isDynamic = (segment) => segment.startsWith(":");
 
 export const paramName = (segment) => segment.slice(1);
 
-const DEFAULT_CONSTRAINT = "\\w+";
+// Без ограничителя динамический сегмент — слово целиком
+const DEFAULT_CONSTRAINT = String.raw`^\w+$`;
 
-// Ограничитель сегмента — регулярка из строки, которая должна совпасть с сегментом целиком
-export const buildMatcher = (constraint = DEFAULT_CONSTRAINT) => {
-  const source = constraint.replace(/^\^/, "").replace(/\$$/, "");
-  return new RegExp(`^(?:${source})$`);
-};
+// Ограничитель — регулярка из строки, ищется в сегменте как есть: якоря `^` и `$` задаёт сам маршрут
+export const buildMatcher = (constraint = DEFAULT_CONSTRAINT) => new RegExp(constraint);
